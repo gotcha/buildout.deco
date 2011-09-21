@@ -6,6 +6,8 @@ Suite Teardown  Close browser
 
 *** Variables ***
 
+${PLONE_URL} =  http://localhost:${PORT}/plone/ 
+
 *** Test cases ***
 
 Plone Accessibility
@@ -14,19 +16,34 @@ Plone Accessibility
     Page should contain  Accessibility
 
 Plone Log In
-    Go to  http://localhost:${PORT}/plone/login_form
+    Log in 
+    Log out
+
+Deco
+    Log in 
+    Go to  ${PLONE_URL}/deco-page
+    Page should contain  Deco page
+    Frame should contain  plone-cmsui-menu  Edit
+    Click link  Edit  don't wait
+    Wait until page contains element  css=.deco-selected-tile
+
+*** Keywords ***
+
+Start browser
+    Open browser   ${PLONE_URL}
+
+Goto homepage
+    Go to   ${PLONE_URL}
+    Page should contain  Plone site
+
+Log out
+    Go to  ${PLONE_URL}/logout
+    Page should contain  logged out
+
+Log in
+    Go to  ${PLONE_URL}/login_form
     Page should contain element  __ac_name
     Input text  __ac_name  admin
     Input text  __ac_password  admin
     Click Button  Log in
     Page should contain  Manage portlets
-    
-
-*** Keywords ***
-
-Start browser
-    Open browser   http://localhost:${PORT}/plone/
-
-Goto homepage
-    Go to   http://localhost:${PORT}/plone/
-    Page should contain  Plone site
