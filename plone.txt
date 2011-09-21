@@ -1,0 +1,32 @@
+*** Settings ***
+Library     SeleniumLibrary  run_on_failure=Capture Page Screenshot
+
+Suite Setup  Start browser 
+Suite Teardown  Close browser
+
+*** Variables ***
+
+*** Test cases ***
+
+Plone Accessibility
+    Goto homepage
+    Click link  Accessibility
+    Page should contain  Accessibility
+
+Plone Log In
+    Go to  http://localhost:${PORT}/plone/login_form
+    Page should contain element  __ac_name
+    Input text  __ac_name  admin
+    Input text  __ac_password  admin
+    Click Button  Log in
+    Page should contain  Manage portlets
+    
+
+*** Keywords ***
+
+Start browser
+    Open browser   http://localhost:${PORT}/plone/
+
+Goto homepage
+    Go to   http://localhost:${PORT}/plone/
+    Page should contain  Plone site
