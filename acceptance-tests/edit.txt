@@ -1,0 +1,30 @@
+*** Settings ***
+Resource  deco.txt
+
+*** Variables ***
+
+${PLONE_URL} =  http://localhost:${PORT}/plone/ 
+
+*** Test cases ***
+
+Deco edit
+    [Tags]  deco
+    Log in 
+    Go to  ${PLONE_URL}/deco-page
+    Page should contain  Deco page
+    Menu should contain  Edit
+    Click link  Edit  don't wait
+    Wait until page contains element  css=.deco-selected-tile
+
+Deco input
+    [Tags]  deco
+    Log in 
+    Go to  ${PLONE_URL}/deco-page
+    Page should contain  Deco page
+    Menu should contain  Edit
+    Click link  Edit  don't wait
+    Wait until page contains element  css=.deco-selected-tile
+    Click element  css=.documentDescription  don't wait
+    Wait until page contains element  css=.deco-selected-tile
+    ${description} =  Get text  css=.deco-selected-tile .documentDescription
+    Should be equal  ${description}  for acceptance test

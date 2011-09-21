@@ -1,0 +1,5 @@
+*** Settings ***
+Resource  plone.txt
+
+Suite Setup  Start browser 
+Suite Teardown  Close browser

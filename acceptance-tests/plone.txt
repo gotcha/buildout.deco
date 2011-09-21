@@ -1,31 +1,9 @@
 *** Settings ***
 Library     SeleniumLibrary  run_on_failure=Capture Page Screenshot
 
-Suite Setup  Start browser 
-Suite Teardown  Close browser
-
 *** Variables ***
 
 ${PLONE_URL} =  http://localhost:${PORT}/plone/ 
-
-*** Test cases ***
-
-Plone Accessibility
-    Goto homepage
-    Click link  Accessibility
-    Page should contain  Accessibility
-
-Plone Log In
-    Log in 
-    Log out
-
-Deco
-    Log in 
-    Go to  ${PLONE_URL}/deco-page
-    Page should contain  Deco page
-    Frame should contain  plone-cmsui-menu  Edit
-    Click link  Edit  don't wait
-    Wait until page contains element  css=.deco-selected-tile
 
 *** Keywords ***
 
