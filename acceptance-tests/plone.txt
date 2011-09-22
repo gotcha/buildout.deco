@@ -23,9 +23,11 @@ Log out
     Page should contain  logged out
 
 Log in
+    [Arguments]  ${userid}  ${password}
     Go to  ${PLONE_URL}/login_form
     Page should contain element  __ac_name
-    Input text  __ac_name  admin
-    Input text  __ac_password  admin
+    Input text  __ac_name  ${userid}
+    Input text  __ac_password  ${password}
     Click Button  Log in
-    Menu should contain  Logged in as admin
+    Go to  ${PLONE_URL}
+    Menu should contain  Logged in as ${userid}

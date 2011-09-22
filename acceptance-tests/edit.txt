@@ -9,7 +9,8 @@ ${PLONE_URL} =  http://localhost:${PORT}/plone/
 
 Deco edit
     [Tags]  deco
-    Log in 
+
+    Log in  admin  admin 
     Go to  ${PLONE_URL}/deco-page
     Page should contain  Deco page
     Menu should contain  Edit
@@ -18,7 +19,8 @@ Deco edit
 
 Deco input
     [Tags]  deco
-    Log in 
+
+    Log in  admin  admin 
     Go to  ${PLONE_URL}/deco-page
     Page should contain  Deco page
     Menu should contain  Edit
