@@ -14,6 +14,10 @@ Goto homepage
     Go to   ${PLONE_URL}
     Page should contain  Plone site
 
+Menu should contain
+    [Arguments]  ${text}
+    Frame should contain  plone-cmsui-menu  ${text}
+
 Log out
     Go to  ${PLONE_URL}/logout
     Page should contain  logged out
@@ -24,4 +28,4 @@ Log in
     Input text  __ac_name  admin
     Input text  __ac_password  admin
     Click Button  Log in
-    Page should contain  Manage portlets
+    Menu should contain  Logged in as admin
