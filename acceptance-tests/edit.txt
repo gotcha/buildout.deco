@@ -50,8 +50,7 @@ Cancel edit
     Wait until page contains element  css=.deco-close-icon
     Click element  css=.deco-close-icon  don't wait
     Wait until notification  Application tile removed
-    Menu should contain  Cancel
-    Click button  Cancel  don't wait
+    Click Cancel menu button
     Wait until notification  Edit cancelled
     Page should contain  for acceptance test
 

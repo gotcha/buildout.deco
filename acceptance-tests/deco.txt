@@ -13,3 +13,7 @@ Wait until notification
 Click ${name} menu link
     Menu should contain  ${name}
     Click link  ${name}  don't wait
+
+Click ${name} menu button
+    Menu should contain  ${name}
+    Click button  ${name}  don't wait

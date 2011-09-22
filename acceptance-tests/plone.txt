@@ -12,7 +12,7 @@ Start browser and wake plone up
     Set Selenium timeout  30
     Log in  admin  admin
     Log out
-    Set Selenium timeout  5
+    Set Selenium timeout  7
 
 Goto homepage
     Go to   ${PLONE_URL}
