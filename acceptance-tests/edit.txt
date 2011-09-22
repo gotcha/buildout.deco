@@ -1,10 +1,6 @@
 *** Settings ***
 Resource  deco.txt
 
-*** Variables ***
-
-${PLONE_URL} =  http://localhost:${PORT}/plone/ 
-
 *** Test cases ***
 
 Deco edit

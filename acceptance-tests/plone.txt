@@ -3,7 +3,7 @@ Library     SeleniumLibrary  run_on_failure=Capture Page Screenshot
 
 *** Variables ***
 
-${PLONE_URL} =  http://localhost:${PORT}/plone/ 
+${PLONE_URL} =  http://localhost:${PORT}/Plone/ 
 
 *** Keywords ***
 
