@@ -9,3 +9,7 @@ Wait until notification
     [Arguments]  ${text}
 
     Wait until keyword succeeds  1  5  Frame should contain  plone-cmsui-notifications  ${text}
+
+Click ${name} menu link
+    Menu should contain  ${name}
+    Click link  ${name}  don't wait

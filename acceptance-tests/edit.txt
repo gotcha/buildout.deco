@@ -9,8 +9,7 @@ Enter edit mode
     Log in  admin  admin 
     Go to  ${PLONE_URL}/deco-page
     Page should contain  Deco page
-    Menu should contain  Edit
-    Click link  Edit  don't wait
+    Click Edit menu link  
     Wait until page contains element  css=.deco-selected-tile
 
 Switch tile
@@ -19,8 +18,7 @@ Switch tile
     Log in  admin  admin 
     Go to  ${PLONE_URL}/deco-page
     Page should contain  Deco page
-    Menu should contain  Edit
-    Click link  Edit  don't wait
+    Click Edit menu link  
     Wait until page contains element  css=.deco-selected-tile
     Click element  css=.documentDescription  don't wait
     Wait until page contains element  css=.deco-selected-tile .documentDescription
@@ -33,8 +31,7 @@ Delete tile
     Log in  admin  admin 
     Go to  ${PLONE_URL}/deco-page
     Page should contain  Deco page
-    Menu should contain  Edit
-    Click link  Edit  don't wait
+    Click Edit menu link  
     Wait until page contains element  css=.deco-selected-tile
     Click element  css=.documentDescription  don't wait
     Wait until page contains element  css=.deco-close-icon
@@ -47,8 +44,7 @@ Cancel edit
     Log in  admin  admin 
     Go to  ${PLONE_URL}/deco-page
     Page should contain  Deco page
-    Menu should contain  Edit
-    Click link  Edit  don't wait
+    Click Edit menu link  
     Wait until page contains element  css=.deco-selected-tile
     Click element  css=.documentDescription  don't wait
     Wait until page contains element  css=.deco-close-icon
