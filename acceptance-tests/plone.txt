@@ -7,8 +7,12 @@ ${PLONE_URL} =  http://localhost:${PORT}/Plone/
 
 *** Keywords ***
 
-Start browser
+Start browser and wake plone up
     Open browser   ${PLONE_URL}
+    Set Selenium timeout  30
+    Log in  admin  admin
+    Log out
+    Set Selenium timeout  5
 
 Goto homepage
     Go to   ${PLONE_URL}
