@@ -3,7 +3,7 @@ Resource  deco.txt
 
 *** Test cases ***
 
-Deco edit
+Enter edit mode
     [Tags]  deco
 
     Log in  admin  admin 
@@ -13,7 +13,7 @@ Deco edit
     Click link  Edit  don't wait
     Wait until page contains element  css=.deco-selected-tile
 
-Deco input
+Switch tile
     [Tags]  deco
 
     Log in  admin  admin 
@@ -23,6 +23,21 @@ Deco input
     Click link  Edit  don't wait
     Wait until page contains element  css=.deco-selected-tile
     Click element  css=.documentDescription  don't wait
-    Wait until page contains element  css=.deco-selected-tile
+    Wait until page contains element  css=.deco-selected-tile .documentDescription
     ${description} =  Get text  css=.deco-selected-tile .documentDescription
     Should be equal  ${description}  for acceptance test
+
+Delete tile
+    [Tags]  deco
+
+    Log in  admin  admin 
+    Go to  ${PLONE_URL}/deco-page
+    Page should contain  Deco page
+    Menu should contain  Edit
+    Click link  Edit  don't wait
+    Wait until page contains element  css=.deco-selected-tile
+    Click element  css=.documentDescription  don't wait
+    Wait until page contains element  css=.deco-close-icon
+    Click element  css=.deco-close-icon  don't wait
+    Wait until notification  Application tile removed
+

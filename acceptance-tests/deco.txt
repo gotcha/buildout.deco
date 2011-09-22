@@ -5,3 +5,7 @@ Resource  plone.txt
 
 *** Keywords ***
 
+Wait until notification
+    [Arguments]  ${text}
+
+    Wait until keyword succeeds  1  5  Frame should contain  plone-cmsui-notifications  ${text}
