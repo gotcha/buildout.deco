@@ -41,3 +41,21 @@ Delete tile
     Click element  css=.deco-close-icon  don't wait
     Wait until notification  Application tile removed
 
+Cancel edit
+    [Tags]  deco
+
+    Log in  admin  admin 
+    Go to  ${PLONE_URL}/deco-page
+    Page should contain  Deco page
+    Menu should contain  Edit
+    Click link  Edit  don't wait
+    Wait until page contains element  css=.deco-selected-tile
+    Click element  css=.documentDescription  don't wait
+    Wait until page contains element  css=.deco-close-icon
+    Click element  css=.deco-close-icon  don't wait
+    Wait until notification  Application tile removed
+    Menu should contain  Cancel
+    Click button  Cancel  don't wait
+    Wait until notification  Edit cancelled
+    Page should contain  for acceptance test
+
