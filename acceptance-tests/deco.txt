@@ -17,3 +17,11 @@ Click ${name} menu link
 Click ${name} menu button
     Menu should contain  ${name}
     Click button  ${name}  don't wait
+
+Should be above
+    [Arguments]  ${locator1}  ${locator2}
+
+    ${locator1-position} =  Get vertical position  ${locator1}
+    ${locator2-position} =  Get vertical position  ${locator2}
+    Should be true  ${locator1-position} < ${locator2-position}
+

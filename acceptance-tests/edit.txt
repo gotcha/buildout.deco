@@ -54,3 +54,19 @@ Cancel edit
     Wait until notification  Edit cancelled
     Page should contain  for acceptance test
 
+
+Drag and drop description tile
+    [Tags]  deco  current
+
+    Log in  admin  admin 
+    Go to  ${PLONE_URL}/deco-page
+    Page should contain  Deco page
+    Click Edit menu link  
+    Wait until page contains element  css=.deco-selected-tile
+    Mouse over  css=.deco-plone\\.app\\.standardtiles\\.description-tile
+    Wait until page contains element  css=.deco-plone\\.app\\.standardtiles\\.description-tile .deco-drag-handle
+    Mouse down at  css=.deco-plone\\.app\\.standardtiles\\.description-tile .deco-drag-handle  350,370
+    Mouse move at  css=.deco-plone\\.app\\.standardtiles\\.description-tile .deco-drag-handle  355,365
+    Mouse move  css=.deco-plone\\.app\\.standardtiles\\.title-tile
+    Mouse up  css=.deco-plone\\.app\\.standardtiles\\.title-tile
+    Should be above  css=.documentDescription  css=.deco-plone\\.app\\.standardtiles\\.title-tile
