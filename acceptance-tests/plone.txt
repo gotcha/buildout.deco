@@ -3,7 +3,7 @@ Library     SeleniumLibrary  run_on_failure=Capture Page Screenshot
 
 *** Variables ***
 
-${PORT} =  8081
+${PORT} =  8080
 ${PLONE_URL} =  http://localhost:${PORT}/Plone/ 
 
 *** Keywords ***
