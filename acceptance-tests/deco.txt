@@ -25,3 +25,9 @@ Should be above
     ${locator2-position} =  Get vertical position  ${locator2}
     Should be true  ${locator1-position} < ${locator2-position}
 
+Wait for Deco edit UI    
+    Wait until page contains element  css=.deco-selected-tile
+
+Deco edit
+    Click Edit menu link
+    Wait for Deco edit UI    

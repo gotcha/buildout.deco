@@ -9,8 +9,7 @@ Enter edit mode
     Log in  admin  admin 
     Go to  ${PLONE_URL}/deco-page
     Page should contain  Deco page
-    Click Edit menu link  
-    Wait until page contains element  css=.deco-selected-tile
+    Deco edit
 
 Switch tile
     [Tags]  deco
@@ -18,8 +17,7 @@ Switch tile
     Log in  admin  admin 
     Go to  ${PLONE_URL}/deco-page
     Page should contain  Deco page
-    Click Edit menu link  
-    Wait until page contains element  css=.deco-selected-tile
+    Deco edit
     Click element  css=.documentDescription  don't wait
     Wait until page contains element  css=.deco-selected-tile .documentDescription
     ${description} =  Get text  css=.deco-selected-tile .documentDescription
@@ -31,8 +29,7 @@ Delete tile
     Log in  admin  admin 
     Go to  ${PLONE_URL}/deco-page
     Page should contain  Deco page
-    Click Edit menu link  
-    Wait until page contains element  css=.deco-selected-tile
+    Deco edit
     Click element  css=.documentDescription  don't wait
     Wait until page contains element  css=.deco-close-icon
     Click element  css=.deco-close-icon  don't wait
@@ -44,7 +41,8 @@ Cancel edit
     Log in  admin  admin 
     Go to  ${PLONE_URL}/deco-page
     Page should contain  Deco page
-    Click Edit menu link  
+    Deco edit
+    Click element  css=.documentDescription  don't wait
     Wait until page contains element  css=.deco-selected-tile
     Click element  css=.documentDescription  don't wait
     Wait until page contains element  css=.deco-close-icon
@@ -61,7 +59,7 @@ Drag and drop description tile
     Log in  admin  admin 
     Go to  ${PLONE_URL}/deco-page
     Page should contain  Deco page
-    Click Edit menu link  
+    Deco edit
     Wait until page contains element  css=.deco-selected-tile
     Mouse over  css=.deco-plone\\.app\\.standardtiles\\.description-tile
     Wait until page contains element  css=.deco-plone\\.app\\.standardtiles\\.description-tile .deco-drag-handle
