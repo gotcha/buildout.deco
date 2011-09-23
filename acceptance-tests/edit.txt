@@ -36,7 +36,7 @@ Delete tile
     Wait until notification  Application tile removed
 
 Cancel edit
-    [Tags]  deco
+    [Tags]  deco  current
 
     Log in  admin  admin 
     Go to  ${PLONE_URL}/deco-page
@@ -44,7 +44,6 @@ Cancel edit
     Deco edit
     Click element  css=.documentDescription  don't wait
     Wait until page contains element  css=.deco-selected-tile
-    Click element  css=.documentDescription  don't wait
     Wait until page contains element  css=.deco-close-icon
     Click element  css=.deco-close-icon  don't wait
     Wait until notification  Application tile removed
@@ -54,7 +53,7 @@ Cancel edit
 
 
 Drag and drop description tile
-    [Tags]  deco  current
+    [Tags]  deco 
 
     Log in  admin  admin 
     Go to  ${PLONE_URL}/deco-page
