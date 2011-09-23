@@ -6,18 +6,13 @@ Resource  deco.txt
 Enter edit mode
     [Tags]  deco
 
-    Log in  admin  admin 
-    Go to  ${PLONE_URL}/deco-page
-    Page should contain  Deco page
-    Deco edit
+    Edit deco page
 
 Switch tile
     [Tags]  deco
 
-    Log in  admin  admin 
-    Go to  ${PLONE_URL}/deco-page
-    Page should contain  Deco page
-    Deco edit
+    Edit deco page
+    
     Click element  css=.documentDescription  don't wait
     Wait until page contains element  css=.deco-selected-tile .documentDescription
     ${description} =  Get text  css=.deco-selected-tile .documentDescription
@@ -26,10 +21,8 @@ Switch tile
 Delete tile
     [Tags]  deco
 
-    Log in  admin  admin 
-    Go to  ${PLONE_URL}/deco-page
-    Page should contain  Deco page
-    Deco edit
+    Edit deco page
+    
     Click element  css=.documentDescription  don't wait
     Wait until page contains element  css=.deco-close-icon
     Click element  css=.deco-close-icon  don't wait
@@ -38,15 +31,16 @@ Delete tile
 Cancel edit
     [Tags]  deco  current
 
-    Log in  admin  admin 
-    Go to  ${PLONE_URL}/deco-page
-    Page should contain  Deco page
-    Deco edit
+    Edit deco page
+    
+    Wait until page contains element  css=.documentDescription
     Click element  css=.documentDescription  don't wait
     Wait until page contains element  css=.deco-selected-tile
+
     Wait until page contains element  css=.deco-close-icon
     Click element  css=.deco-close-icon  don't wait
     Wait until notification  Application tile removed
+
     Click Cancel menu button
     Wait until notification  Edit cancelled
     Page should contain  for acceptance test
@@ -54,11 +48,9 @@ Cancel edit
 
 Drag and drop description tile
     [Tags]  deco 
+ 
+    Edit deco page
 
-    Log in  admin  admin 
-    Go to  ${PLONE_URL}/deco-page
-    Page should contain  Deco page
-    Deco edit
     Wait until page contains element  css=.deco-selected-tile
     Mouse over  css=.deco-plone\\.app\\.standardtiles\\.description-tile
     Wait until page contains element  css=.deco-plone\\.app\\.standardtiles\\.description-tile .deco-drag-handle
@@ -67,3 +59,11 @@ Drag and drop description tile
     Mouse move  css=.deco-plone\\.app\\.standardtiles\\.title-tile
     Mouse up  css=.deco-plone\\.app\\.standardtiles\\.title-tile
     Should be above  css=.documentDescription  css=.deco-plone\\.app\\.standardtiles\\.title-tile
+
+*** Keywords ***
+
+Edit deco page
+    Log in  admin  admin 
+    Go to  ${PLONE_URL}/deco-page
+    Page should contain  Deco page
+    Deco edit
