@@ -1,17 +1,19 @@
 *** Settings ***
 Resource  deco.txt
 
+Suite setup  Log in  admin  admin
+
+Test setup  Edit deco page
+
 *** Test cases ***
 
 Enter edit mode
     [Tags]  deco
 
-    Edit deco page
+    No operation
 
 Switch tile
     [Tags]  deco
-
-    Edit deco page
     
     Click element  css=.documentDescription  don't wait
     Wait until page contains element  css=.deco-selected-tile .documentDescription
@@ -20,8 +22,6 @@ Switch tile
 
 Delete tile
     [Tags]  deco
-
-    Edit deco page
     
     Click element  css=.documentDescription  don't wait
     Wait until page contains element  css=.deco-close-icon
@@ -30,8 +30,6 @@ Delete tile
 
 Cancel edit
     [Tags]  deco  current
-
-    Edit deco page
     
     Wait until page contains element  css=.documentDescription
     Click element  css=.documentDescription  don't wait
@@ -45,12 +43,9 @@ Cancel edit
     Wait until notification  Edit cancelled
     Page should contain  for acceptance test
 
-
 Drag and drop description tile
     [Tags]  deco 
  
-    Edit deco page
-
     Wait until page contains element  css=.deco-selected-tile
     Mouse over  css=.deco-plone\\.app\\.standardtiles\\.description-tile
     Wait until page contains element  css=.deco-plone\\.app\\.standardtiles\\.description-tile .deco-drag-handle
@@ -63,7 +58,6 @@ Drag and drop description tile
 *** Keywords ***
 
 Edit deco page
-    Log in  admin  admin 
     Go to  ${PLONE_URL}/deco-page
     Page should contain  Deco page
     Deco edit
