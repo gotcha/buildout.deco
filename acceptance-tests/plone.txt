@@ -4,16 +4,23 @@ Library     SeleniumLibrary  run_on_failure=Capture Page Screenshot
 *** Variables ***
 
 ${PORT} =  8080
-${PLONE_URL} =  http://localhost:${PORT}/Plone/ 
+${ZOPE_URL} =  http://localhost:${PORT}
+${PLONE_URL} =  ${ZOPE_URL}/Plone
 
 *** Keywords ***
 
 Start browser and wake plone up
-    Open browser   ${PLONE_URL}
-    Set Selenium timeout  30
-    Log in  admin  admin
+
+    Set Selenium timeout  3s
+    
+    ${previous}  Register keyword to run on failure  Close Browser
+    Wait until keyword succeeds  2min  3s  Open Browser  ${ZOPE_URL}
+    Register keyword to run on failure  ${previous}
+    
+    Set Selenium timeout  30s
+    Wait until keyword succeeds  30s  1s  Log in  admin  admin
     Log out
-    Set Selenium timeout  7
+    Set Selenium timeout  7s
 
 Goto homepage
     Go to   ${PLONE_URL}
