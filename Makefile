@@ -8,7 +8,7 @@ pybot_options =
 all: test
 
 bin/python:
-	virtualenv -p python2.6 --distribute --no-site-packages .
+	virtualenv-2.6 --distribute --no-site-packages .
 
 develop-eggs: bin/python bootstrap.py
 	./bin/python bootstrap.py
