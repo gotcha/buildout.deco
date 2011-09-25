@@ -23,18 +23,18 @@ bin/pybot: pybot.cfg buildout.cfg bin/buildout
 	./bin/buildout -Nvt 5 -c pybot.cfg
 	touch $@
 
-supervisord.pid:
+var/supervisord.pid:
 	bin/supervisord --pidfile=$@
 
 test: bin/test
 	bin/test 
 
-pybot: bin/pybot supervisord.pid
+pybot: bin/pybot var/supervisord.pid
 	bin/supervisorctl start all
 	bin/pybot $(pybot_options)
 
 clean: 
-	test -e supervisord.pid && cat supervisord.pid | xargs kill -s TERM
+	test -e var/supervisord.pid && bin/supervisorctl shutdown
 
 cleanall: clean
 	rm -fr bin develop-eggs downloads eggs parts .installed.cfg
