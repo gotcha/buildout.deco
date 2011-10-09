@@ -19,22 +19,21 @@ bin/test: buildout.cfg bin/buildout
 	./bin/buildout -Nvt 5
 	touch $@
 
+bin/instance: buildout.cfg bin/buildout 
+	./bin/buildout -Nvt 5
+	touch $@
+
 bin/pybot: pybot.cfg buildout.cfg bin/buildout 
 	./bin/buildout -Nvt 5 -c pybot.cfg
 	touch $@
 
-var/supervisord.pid:
-	bin/supervisord --pidfile=$@
-
 test: bin/test
 	bin/test 
 
-pybot: bin/pybot var/supervisord.pid
-	bin/supervisorctl start all
-	bin/pybot $(pybot_options)
+pybot: bin/pybot bin/instance
+	bin/instance start
+	bin/pybot $(pybot_options) acceptance-tests
+	bin/instance stop
 
-clean: 
-	test -e var/supervisord.pid && bin/supervisorctl shutdown
-
-cleanall: clean
+cleanall:
 	rm -fr bin develop-eggs downloads eggs parts .installed.cfg
