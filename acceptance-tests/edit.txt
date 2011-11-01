@@ -5,6 +5,12 @@ Suite setup  Log in  admin  admin
 
 Test setup  Edit deco page
 
+*** Variables ***
+${TITLE_TILE} =  css=.deco-plone\\.app\\.standardtiles\\.title-tile
+${DESCRIPTION_TILE} =  css=.deco-plone\\.app\\.standardtiles\\.description-tile
+${DESCRIPTION_TILE_DRAG} =  ${DESCRIPTION_TILE} .deco-drag-handle
+
+
 *** Test cases ***
 
 Enter edit mode
@@ -14,46 +20,50 @@ Enter edit mode
 
 Switch tile
     [Tags]  deco
+ 
+    Select Description tile
     
-    Click element  css=.documentDescription  don't wait
-    Wait until page contains element  css=.deco-selected-tile .documentDescription
     ${description} =  Get text  css=.deco-selected-tile .documentDescription
     Should be equal  ${description}  for acceptance test
 
 Delete tile
     [Tags]  deco
+   
+    Delete Description tile
     
-    Click element  css=.documentDescription  don't wait
-    Wait until page contains element  css=.deco-close-icon
-    Click element  css=.deco-close-icon  don't wait
-    Wait until notification  Application tile removed
+Cancel edition
+    [Tags]  deco
 
-Cancel edit
-    [Tags]  deco  current
-    
-    Wait until page contains element  css=.documentDescription
-    Click element  css=.documentDescription  don't wait
-    Wait until page contains element  css=.deco-selected-tile
-
-    Wait until page contains element  css=.deco-close-icon
-    Click element  css=.deco-close-icon  don't wait
-    Wait until notification  Application tile removed
+    Delete Description tile
 
     Click Cancel menu button
     Wait until notification  Edit cancelled
+    
     Page should contain  for acceptance test
 
 Drag and drop description tile
-    [Tags]  deco 
+    [Tags]  deco
  
-    Wait until page contains element  css=.deco-selected-tile
-    Mouse over  css=.deco-plone\\.app\\.standardtiles\\.description-tile
-    Wait until page contains element  css=.deco-plone\\.app\\.standardtiles\\.description-tile .deco-drag-handle
-    Mouse down at  css=.deco-plone\\.app\\.standardtiles\\.description-tile .deco-drag-handle  350,370
-    Mouse move at  css=.deco-plone\\.app\\.standardtiles\\.description-tile .deco-drag-handle  355,365
-    Mouse move  css=.deco-plone\\.app\\.standardtiles\\.title-tile
-    Mouse up  css=.deco-plone\\.app\\.standardtiles\\.title-tile
-    Should be above  css=.documentDescription  css=.deco-plone\\.app\\.standardtiles\\.title-tile
+    Should be above  ${TITLE_TILE}  ${DESCRIPTION_TILE}
+
+    Start dragging tile  ${DESCRIPTION_TILE}
+    Mouse move  ${TITLE_TILE}
+    Mouse up  ${TITLE_TILE}
+
+    Should be above  ${DESCRIPTION_TILE}  ${TITLE_TILE}
+
+Drag and drop title tile
+    [Tags]  deco  current 
+ 
+    Should be above  ${TITLE_TILE}  ${DESCRIPTION_TILE}
+
+    Select Description tile
+
+    Start dragging tile  ${TITLE_TILE}
+
+    Drop bottom of  ${DESCRIPTION_TILE}
+
+    Should be above  ${DESCRIPTION_TILE}  ${TITLE_TILE}
 
 *** Keywords ***
 
@@ -61,3 +71,17 @@ Edit deco page
     Go to  ${PLONE_URL}/deco-page
     Page should contain  Deco page
     Deco edit
+
+Select Description tile
+    Wait until page contains element  css=.documentDescription
+    
+    Click element  css=.documentDescription  don't wait
+    Wait until page contains element  css=.deco-selected-tile .documentDescription
+
+Delete Description tile
+    Select Description tile
+    
+    Wait until page contains element  css=.deco-close-icon
+
+    Click element  css=.deco-close-icon  don't wait
+    Wait until notification  Application tile removed

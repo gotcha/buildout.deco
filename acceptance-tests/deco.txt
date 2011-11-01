@@ -1,6 +1,4 @@
 *** Settings ***
-Library  SeleniumLibrary  run_on_failure=Capture Page Screenshot
-
 Resource  plone.txt
 
 *** Keywords ***
@@ -30,4 +28,29 @@ Wait for Deco edit UI
 
 Deco edit
     Click Edit menu link
-    Wait for Deco edit UI    
+    Wait for Deco edit UI
+
+Start dragging tile
+    [Arguments]  ${locator}
+    
+    Mouse over  ${locator}
+    ${DRAG_HANDLE} =  Catenate  ${locator}  .deco-drag-handle
+    Wait until page contains element  ${DRAG_HANDLE}
+    ${vertical-position} =  Get vertical position  ${locator}
+    ${vertical-position-moved} =  Evaluate  ${vertical-position} + 5
+    ${horizontal-position} =  Get horizontal position  ${locator}
+    ${horizontal-position-moved} =  Evaluate  ${horizontal-position} + 5
+    Mouse down at  ${DRAG_HANDLE}  ${horizontal-position},${vertical-position}
+    Mouse move at  ${DRAG_HANDLE}  ${horizontal-position-moved},${vertical-position-moved}
+
+Drop bottom of 
+    [Arguments]  ${locator}
+    
+    ${left} =  Get horizontal position  ${locator}
+    ${width} =  Get width  ${locator}
+    ${top} =  Get vertical position  ${locator}
+    ${height} =  Get height  ${locator}
+    ${drop-h} =  Evaluate  ${left} + ${width} / 2
+    ${drop-v} =  Evaluate  ${top} + ${height} - 1
+    Mouse move at  ${locator}  ${drop-h},${drop-v}
+    Mouse up at  ${locator}  ${drop-h},${drop-v}
